@@ -24,7 +24,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
-                <p class="text-center mt-3">Belum punya akun? <a href="register.html">Daftar disini</a></p>
+                <p class="text-center mt-3">Belum punya akun? <a href="register.php">Daftar disini</a></p>
             </div>
         </div>
     </section>

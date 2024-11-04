@@ -36,7 +36,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Daftar</button>
                 </form>
-                <p class="text-center mt-3">Sudah punya akun? <a href="login.html">Login disini</a></p>
+                <p class="text-center mt-3">Sudah punya akun? <a href="login.php">Login disini</a></p>
             </div>
         </div>
     </section>

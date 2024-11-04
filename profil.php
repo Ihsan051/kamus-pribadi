@@ -9,9 +9,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Profil Pengguna</h1>
-    </header>
+    <?php include "navbar.php" ?>
 
     <!-- Profil Pengguna -->
     <section class="container mt-5">
@@ -19,6 +17,7 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card">
                     <div class="card-body text-center">
+                        <br>
                         <!-- Foto Profil -->
                         <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Foto Profil" width="150" height="150">
                         
