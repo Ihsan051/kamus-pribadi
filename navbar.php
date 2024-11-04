@@ -21,6 +21,10 @@
                             <a class="nav-link" href="register.php">Register</a>
                         </li>
                     </ul>
+                      <!-- Foto Profil -->
+                    <div>
+                        <img src="https://via.placeholder.com/40" alt="Foto Profil" class="profile-pic">
+                    </div>
                 </div>
             </div>
         </nav>

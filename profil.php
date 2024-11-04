@@ -34,8 +34,12 @@
                             <li class="list-group-item"><strong>Jenis Kelamin:</strong> Laki-Laki / Perempuan</li>
                         </ul>
 
-                        <!-- Tombol Edit Profil -->
-                        <a href="#" class="btn btn-primary mt-3">Edit Profil</a>
+                        <div class="d-flex justify-content-between">
+                            <!-- Tombol Kembali -->
+                            <a href="beranda.php" class="btn btn-secondary">Kembali</a>
+                            <!-- Tombol Edit Profil -->
+                            <a href="#" class="btn btn-primary ">Edit Profil</a>
+                        </div>
                     </div>
                 </div>
             </div>

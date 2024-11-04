@@ -22,6 +22,10 @@
             </div>
         </div>
     </section>
+      <!-- Tombol Tambah Data -->
+      <section class="container my-5 text-center">
+        <a href="inputdata.php" class="btn btn-success btn-lg">Tambah Data Baru</a>
+    </section>
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>

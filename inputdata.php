@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php include "navbar.php" ?>
     <!-- Form Kamus Pribadi -->
     <section class="d-flex justify-content-center align-items-center vh-100">
         <div class="col-md-6">
@@ -30,7 +31,12 @@
                         <label for="image" class="form-label">Gambar (opsional)</label>
                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Tambahkan ke Kamus</button>
+                    <div class="d-flex justify-content-between">
+                        <!-- Tombol Kembali -->
+                        <a href="beranda.php" class="btn btn-secondary">Kembali</a>
+                        <!-- Tombol Tambahkan Data -->
+                        <button type="submit" class="btn btn-primary">Tambahkan ke Kamus</button>
+                    </div>
                 </form>
             </div>
         </div>
