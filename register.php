@@ -6,8 +6,9 @@ if(isset($_POST['name'])){
     $email    = $_POST['email'];
     $telepon  = $_POST['phone'];
     $password = $_POST['password'];
+    $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = mysqli_query($conn,"INSERT INTO user(nama_lengkap,email,telepon,password) values ('$username', ' $email', '$telepon', '$password') ");
+    $query = mysqli_query($conn,"INSERT INTO user(nama_lengkap,email,telepon,password) values ('$username', ' $email', '$telepon', '$passwordhash') ");
 
     if($query){
         echo "pendaftaran berhasil";
