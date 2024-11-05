@@ -6,7 +6,7 @@
 
     $conn = new mysqli($host,$username,$password,$database);
     if(!$conn){
-        echo "database tidak terkoneksi";
+        die ("Koneksi gagal :" . mysqli_connect_error());
     }else{
         echo "database terkoneksi";
     }

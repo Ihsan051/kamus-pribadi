@@ -1,3 +1,25 @@
+<?php
+include "database/koneksi.php";
+
+if(isset($_POST['name'])){
+    $username = $_POST['name'];
+    $email    = $_POST['email'];
+    $telepon  = $_POST['phone'];
+    $password = $_POST['password'];
+
+    $query = mysqli_query($conn,"INSERT INTO user(nama_lengkap,email,telepon,password) values ('$username', ' $email', '$telepon', '$password') ");
+
+    if($query){
+        echo "pendaftaran berhasil";
+    }else{
+        echo "pendaftaran gagal";
+    }
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +35,7 @@
         <div class="col-md-6">
             <h3 class="text-center mb-4">Register</h3>
             <div class="card p-4">
-                <form action="register_process.php" method="POST">
+                <form action="register.php" method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" required>
