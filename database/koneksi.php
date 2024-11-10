@@ -2,7 +2,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $database = "kamus pribadi";
+    $database = "kamus_pribadi";
 
     $conn = new mysqli($host,$username,$password,$database);
     if(!$conn){

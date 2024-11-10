@@ -1,3 +1,14 @@
+<?php 
+include "database/koneksi.php";
+$email = $_POST['email'];
+$password = $_POST['password']
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +24,7 @@
         <div class="col-md-4">
             <h3 class="text-center mb-4">Login</h3>
             <div class="card p-4">
-                <form action="login_process.php" method="POST">
+                <form action="login.php" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
