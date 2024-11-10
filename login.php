@@ -1,13 +1,54 @@
-<?php 
-include "database/koneksi.php";
-$email = $_POST['email'];
-$password = $_POST['password']
+<?php
+// Start the session to manage user login state
+session_start();
 
+// Include database connection file
+require_once 'db_connection.php'; // Ensure you have a file for DB connection
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data dari form dengan sanitasi
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password']; // Password tidak disanitasi
 
+    // Query untuk memeriksa pengguna
+    $sql = "SELECT * FROM user WHERE email = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        // Cek apakah pengguna ditemukan
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+
+            // Verifikasi password
+            if (password_verify($password, $row['password'])) {
+                // Login berhasil
+                $_SESSION['user_email'] = $email; // Simpan email di session
+                header("Location: beranda.php");
+                exit(); // Pastikan untuk menghentikan script setelah redirect
+            } else {
+                $error_message = "Password salah!";
+            }
+        } else {
+            $error_message = "Username tidak ditemukan!";
+        }
+
+        // Tutup statement
+        $stmt->close();
+    } else {
+        $error_message = "Terjadi kesalahan dalam query.";
+    }
+
+    // Tutup koneksi
+    $conn->close();
+}
+
+// Tampilkan pesan kesalahan jika ada
+if (isset($error_message)) {
+    echo "<p style='color: red;'>$error_message</p>";
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,33 +56,18 @@ $password = $_POST['password']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tambahkan stylesheet dan script jika perlu -->
 </head>
 <body>
     <!-- Form Login -->
-    <section class="d-flex justify-content-center align-items-center vh-100">
-        <div class="col-md-4">
-            <h3 class="text-center mb-4">Login</h3>
-            <div class="card p-4">
-                <form action="login.php" method="POST">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </form>
-                <p class="text-center mt-3">Belum punya akun? <a href="register.php">Daftar disini</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <form action="" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
 </body>
 </html>

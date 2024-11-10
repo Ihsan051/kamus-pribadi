@@ -22,10 +22,10 @@ mysqli_select_db($conn, $database);
 // create table//
 $conn->query("CREATE TABLE `user`(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nama_lengkap char(50),
-    email varchar(50),
-    telepon varchar (13),
-    password varchar (100)
+    nama_lengkap char(50) NOT NULL,
+    email varchar(50) NOT NULL,
+    telepon varchar (13) NOT NULL,
+    password varchar (100) NOT NULL
 ) ");
 
 

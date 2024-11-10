@@ -2,6 +2,10 @@
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
+                  <!-- Foto Profil -->
+                  <div>
+                        <img src="https://via.placeholder.com/40" alt="Foto Profil" class="profile-pic" style="padding: 10px;">
+                    </div> 
                 <a class="navbar-brand" href="#">Kamus Pribadi</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,10 +25,6 @@
                             <a class="nav-link" href="register.php">Register</a>
                         </li>
                     </ul>
-                      <!-- Foto Profil -->
-                    <div>
-                        <img src="https://via.placeholder.com/40" alt="Foto Profil" class="profile-pic">
-                    </div>
                 </div>
             </div>
         </nav>
