@@ -1,0 +1,9 @@
+Kelompok Ramzie
+
+Membuat aplikasi "Kamus Pribadi"
+
+Tampilan mobile
+
+Menyimpan inputan: informasi dan gambar, pencarian bisa super sensitif dan cepat
+
+Profile user, data informasi sesuai user yang login

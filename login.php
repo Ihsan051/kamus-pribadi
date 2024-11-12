@@ -2,31 +2,31 @@
 // Start the session to manage user login state
 session_start();
 
-// Include database connection file
-require_once 'db_connection.php'; // Ensure you have a file for DB connection
+// Include database connection file (make sure the path is correct)
+require_once 'database/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form dengan sanitasi
+    // Sanitize the email input
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password']; // Password tidak disanitasi
+    $password = $_POST['password']; // Password not sanitized to allow for secure hash comparison
 
-    // Query untuk memeriksa pengguna
+    // Query to check the user
     $sql = "SELECT * FROM user WHERE email = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Cek apakah pengguna ditemukan
+        // Check if the user is found
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
 
-            // Verifikasi password
+            // Verify password
             if (password_verify($password, $row['password'])) {
-                // Login berhasil
-                $_SESSION['user_email'] = $email; // Simpan email di session
+                // Login successful
+                $_SESSION['user_email'] = $email; // Store email in session
                 header("Location: beranda.php");
-                exit(); // Pastikan untuk menghentikan script setelah redirect
+                exit(); // Ensure to stop the script after redirect
             } else {
                 $error_message = "Password salah!";
             }
@@ -34,17 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error_message = "Username tidak ditemukan!";
         }
 
-        // Tutup statement
+        // Close statement
         $stmt->close();
     } else {
         $error_message = "Terjadi kesalahan dalam query.";
     }
 
-    // Tutup koneksi
+    // Close connection
     $conn->close();
 }
 
-// Tampilkan pesan kesalahan jika ada
+// Display error message if any
 if (isset($error_message)) {
     echo "<p style='color: red;'>$error_message</p>";
 }
@@ -56,10 +56,10 @@ if (isset($error_message)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Tambahkan stylesheet dan script jika perlu -->
+    <!-- Add Bootstrap CSS or other styles if needed -->
 </head>
 <body>
-    <!-- Form Login -->
+    <!-- Login Form -->
     <form action="" method="POST">
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>

@@ -1,24 +1,29 @@
 <?php
 include "database/koneksi.php";
 
-if(isset($_POST['name'])){
+if (isset($_POST['name'])) {
     $username = $_POST['name'];
     $email    = $_POST['email'];
     $telepon  = $_POST['phone'];
     $password = $_POST['password'];
     $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = mysqli_query($conn,"INSERT INTO user(nama_lengkap,email,telepon,password) values ('$username', ' $email', '$telepon', '$passwordhash') ");
+    // Validate phone number
+    if (!is_numeric($telepon)) {
+        die("Error: Nomor telepon harus berupa angka.");
+    }
 
-    if($query){
-        echo "pendaftaran berhasil";
-    }else{
-        echo "pendaftaran gagal";
+    // Use prepared statements to prevent SQL injection
+    $query = $conn->prepare("INSERT INTO user (nama_lengkap, email, telepon, password) VALUES (?, ?, ?, ?)");
+    $query->bind_param("ssss", $username, $email, $telepon, $passwordhash);
+
+    if ($query->execute()) {
+        echo "Pendaftaran berhasil";
+    } else {
+        echo "Pendaftaran gagal: " . $conn->error;
     }
 }
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -26,7 +31,7 @@ if(isset($_POST['name'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Kamus Pribadi</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -47,7 +52,7 @@ if(isset($_POST['name'])){
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Nomor Telepon</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Masukkan nomor telepon" required>
+                        <input type="number" class="form-control" id="phone" name="phone" placeholder="Masukkan nomor telepon" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
