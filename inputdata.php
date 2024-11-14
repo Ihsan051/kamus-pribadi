@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert data into the database
-    $sql = "INSERT INTO personal_dictionary (word, definition, example, image_path) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO kamus (word, definition, example, image_path) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $word, $definition, $example, $image_path);
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-md-6">
             <h3 class="text-center mb-4">Tambah Kata ke Kamus Pribadi</h3>
             <div class="card p-4">
-                <form action="add_word.php" method="POST" enctype="multipart/form-data">
+                <form action="inputdata.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="word" class="form-label">Kata</label>
                         <input type="text" class="form-control" id="word" name="word" placeholder="Masukkan kata" required>

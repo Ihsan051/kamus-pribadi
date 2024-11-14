@@ -56,18 +56,28 @@ if (isset($error_message)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Add Bootstrap CSS or other styles if needed -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Login Form -->
-    <form action="" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        
-        <button type="submit">Login</button>
-    </form>
+    <section class="d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-4">
+            <h3 class="text-center mb-4">Login</h3>
+            <div class="card p-4">
+                <form action="login.php" method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                <p class="text-center mt-3">Belum punya akun? <a href="register.php">Daftar disini</a></p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
+
