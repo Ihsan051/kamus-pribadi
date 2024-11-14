@@ -1,6 +1,16 @@
 <?php 
 include "database/koneksi.php";
+// Start the session to access session variables
+session_start();
 
+// Include database connection
+require_once 'database/koneksi.php';
+
+// Check if user is logged in
+if (!isset($_SESSION['user_email'])) {
+    header("Location: login.php");
+    exit();
+}
 // Ambil data
 $sql = "SELECT id, word, definition, example, image_path FROM kamus";
 $result = $conn->query($sql);

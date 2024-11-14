@@ -36,6 +36,19 @@ if ($result->num_rows === 1) {
     <title>Profil Pengguna</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .rounded-circle {
+            border: 3px solid #007bff; /* Warna border untuk gambar profil */
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -64,7 +77,7 @@ if ($result->num_rows === 1) {
                             <li class="list-group-item"><strong>Jenis Kelamin:</strong> <?php echo htmlspecialchars($user['jenis_kelamin'] ?? 'Jenis kelamin belum diatur'); ?></li>
                         </ul>
 
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mt-4">
                             <!-- Tombol Kembali -->
                             <a href="beranda.php" class="btn btn-secondary">Kembali</a>
                             <!-- Tombol Edit Profil -->

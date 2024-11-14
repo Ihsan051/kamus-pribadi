@@ -36,8 +36,12 @@ $conn->select_db($dbname);
 $user_table = "CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama_lengkap VARCHAR(40) NOT NULL,
-    email VARCHAR(40) NOT NULL,
+    email VARCHAR(40) NOT NULL UNIQUE,
     telepon VARCHAR(20),
+    alamat VARCHAR(255),
+    tanggal_lahir DATE,
+    jenis_kelamin ENUM('Laki-laki', 'Perempuan') DEFAULT NULL,
+    posisi VARCHAR(50) DEFAULT NULL,
     password VARCHAR(255) NOT NULL
 )";
 
