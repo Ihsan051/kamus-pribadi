@@ -53,35 +53,42 @@ $result = $conn->query($sql);
 <body>
     <?php include "navbar.php"; ?>
     <!-- Main Content -->
-    <section class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <form action="pencarian_kata.php" method="GET" class="d-flex mb-4">
-                    <input type="text" class="form-control me-2" name="query" placeholder="Cari kata..." required>
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </form>
-
-                <h1 class="header-title">Kamus Pribadi</h1>
-                <div id="data-container" class="text-center">
-                    <?php
+                <section class="container my-5">
+        <div class="row">
+            <div class="col-md-3 p-2">
+                <div id="data-container" class="d-flex flex-wrap">
+                <?php 
                     if ($result->num_rows > 0) {
-                        // Tampilkan data
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<div class='data-item'>";
-                            echo "<h2>ID: " . $row["id"] . "</h2>";
-                            echo "<p><strong>Kata:</strong> " . $row["word"] . "</p>";
-                            echo "<p><strong>Definisi:</strong> " . $row["definition"] . "</p>";
-                            echo "<p><strong>Contoh:</strong> " . $row["example"] . "</p>";
-                            echo "<img src='" . $row["image_path"] . "' alt='" . $row["word"] . "'>";
+                        // menampilkan data 
+                        while ($row = $result->fetch_assoc()){
+                        echo "<div class='card d-inline-block' style= width: 10rem;' >";
+                        echo  "<img src='". $row['image_path'] ."' class='card-img-top w-100' >";
+                            echo "<div class='card-body bg-dark text-light pb-0'>";
+                            echo "<table class='table table-dark table-borderless w-25 lh-1'>";
+                            echo "<tr>";
+                            echo "<td>Id</td>";
+                            echo "<td>:" . $row["id"] ."</td>";
+                            echo "</tr>";
+                            echo "<tr>";
+                            echo "<td>Kata</td>";
+                            echo "<td> :". $row["word"] ."</td>";
+                            echo "</tr>";
+                            echo "<tr>";
+                            echo "<td>Definisi</td>";
+                            echo "<td>:" . $row["definition"] ."</td>";
+                            echo "</tr>";
+                            echo "<tr>";
+                            echo "<td>Contoh </td>";
+                            echo "<td>:" . $row["example"] ."</td>";
+                            echo "</tr>";
+                            echo "</table>";
                             echo "</div>";
                         }
-                    } else {
-                        echo "<div class='alert alert-warning'>0 hasil</div>";
                     }
-                    $conn->close();
+                    
                     ?>
                 </div>
-            </div>
+          </div>
         </div>
     </section>
     <!-- Tombol Tambah Data -->
